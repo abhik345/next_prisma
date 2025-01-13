@@ -1,0 +1,6 @@
+npm install @prisma/client
+npx prisma generate
+npm install prisma --save-dev
+npx prisma init --datsource-provider mysql
+npx prisma migrate dev --name init
+npx prisma migrate dev
