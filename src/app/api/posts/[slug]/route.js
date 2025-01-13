@@ -12,7 +12,9 @@ export async function GET(request, { params }) {
             },
             include : {
                 author : true,
-                comment : true
+                category : true,
+                subCategory: true,
+                comment : true,  
             }
         });
         if (!post) {

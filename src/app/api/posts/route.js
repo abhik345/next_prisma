@@ -5,7 +5,8 @@ const prisma = new PrismaClient();
 
 export async function POST(request) {
     try {
-        const { title, content, published, authorId } = await request.json();
+        const { title, content, published, authorId,categoryId,
+            subCategoryId } = await request.json();
         // Validation for required fields
         if (!title || !authorId) {
             return NextResponse.json({
@@ -20,6 +21,8 @@ export async function POST(request) {
                 published: published ?? false,
                 slug : title.replace(/\s+/g, '-').toLowerCase(),
                 authorId,
+                categoryId,
+                subCategoryId
             },
         });
 
@@ -41,10 +44,12 @@ export async function GET() {
     try {
         const posts = await prisma.post.findMany({
             include: {
-                author: true,
-                comment: true,
+                author : true,
+                category : true,
+                subCategory: true,
+                comment : true,  
             },
-        });
+        })
 
         return NextResponse.json({
             status: 200,

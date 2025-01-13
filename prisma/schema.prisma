@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,27 +8,46 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   email String @unique
-  name String?
+  name  String?
   posts Post[]
 }
 
-model Post {
-  id        Int       @id @default(autoincrement())
-  title     String
-  slug      String    @unique 
-  content   String?
-  published Boolean   @default(false)
-  author    User      @relation(fields: [authorId], references: [id])
-  authorId  Int
-  comment   Comment[]
+model Category {
+  id            Int            @id @default(autoincrement())
+  category_name String
+  subCategories SubCategory[]
+  posts         Post[]
 }
+
+model SubCategory {
+  id                Int       @id @default(autoincrement())
+  subcategory_name  String
+  category          Category  @relation(fields: [categoryId], references: [id])
+  categoryId        Int
+  posts             Post[]
+}
+
+model Post {
+  id            Int          @id @default(autoincrement())
+  title         String
+  slug          String       @unique
+  content       String?
+  published     Boolean      @default(false)
+  author        User         @relation(fields: [authorId], references: [id])
+  authorId      Int
+  category      Category     @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  subCategory   SubCategory? @relation(fields: [subCategoryId], references: [id])
+  subCategoryId Int?
+  comment       Comment[]
+}
+
 
 model Comment {
-  id Int @id @default(autoincrement())
+  id      Int    @id @default(autoincrement())
   message String
-  post  Post  @relation(fields: [postId],references: [id])
-  postId Int
+  post    Post   @relation(fields: [postId], references: [id])
+  postId  Int
 }
-
