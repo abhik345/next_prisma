@@ -21,7 +21,7 @@ export async function POST(request){
             data: comments
         })
     } catch (error) {
-        return NextResponse.error({ status: 500, statusText: error.message });
+        return NextResponse.error({ status: 500, message: error.message });
     }
 }
 

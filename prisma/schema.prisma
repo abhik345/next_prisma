@@ -42,6 +42,14 @@ model Post {
   subCategory   SubCategory? @relation(fields: [subCategoryId], references: [id])
   subCategoryId Int?
   comment       Comment[]
+  postimage     Postimage[]
+}
+
+model Postimage {
+  id Int  @id @default(autoincrement())
+  image_url String
+  post Post @relation(fields: [postId],references: [id])
+  postId Int
 }
 
 

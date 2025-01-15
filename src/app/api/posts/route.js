@@ -47,7 +47,8 @@ export async function GET() {
                 author : true,
                 category : true,
                 subCategory: true,
-                comment : true,  
+                comment : true,
+                postimage : true  
             },
         })
 

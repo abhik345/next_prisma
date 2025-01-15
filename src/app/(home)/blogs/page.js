@@ -94,12 +94,12 @@ const page = () => {
                     >
                       {blog.category}
                     </a>
-                    <a
-                      href="#"
+                    <Link
+                      href={`/blogs/${generateSlug(blog.title)}`}
                       className="text-gray-900 font-bold text-lg mb-2 hover:text-indigo-600 transition duration-500 ease-in-out"
                     >
                       {blog.title}
-                    </a>
+                    </Link>
                     <p className="text-gray-700 text-xs mt-2">{blog.description}</p>
                   </div>
                 </div>
