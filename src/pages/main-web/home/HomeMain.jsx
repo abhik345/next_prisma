@@ -47,15 +47,17 @@ const HomeMain = ({ blogs }) => {
 
       <div className="home-main bg-white py-10">
         {/* Search Bar */}
-        <div className="search-bar mx-auto max-w-3xl px-4 py-2">
+        <div className="flex  gap-2 ">
+        <div className="search-bar px-4 w-1/2">
           <input
             type="text"
             placeholder="Search blogs..."
             className="w-full rounded-lg border border-gray-300 px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div>
+        <div className="w-1/2">
           <NewDateChoose/>
+        </div>
         </div>
 
         {/* Blog List */}

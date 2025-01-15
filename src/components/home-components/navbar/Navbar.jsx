@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -9,7 +10,14 @@ const Navbar = () => {
 
   // Toggle function
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
+    setOpen((prev) => !prev); 
+  };
+
+  const router = useRouter();
+  
+  const handleNavigate = () => {
+    setShowMegaMenu(false); 
+    router.push('/blogs');
   };
 
   return (
@@ -68,7 +76,7 @@ const Navbar = () => {
                         </span>
                       </button>
                       <div
-                        className={`w-full lg:absolute lg:left-0 lg:top-full lg:w-[850px] lg:rounded-xl lg:shadow-lg ${
+                        className={`w-full lg:absolute z-50 lg:left-0 lg:top-full lg:w-[850px] lg:rounded-xl lg:shadow-lg ${
                           showMegaMenu ? "block" : "hidden"
                         }`}
                       >
@@ -184,7 +192,7 @@ const Navbar = () => {
                                   />
                                 </svg>
                               </div>
-                              <div>
+                              <div onClick={handleNavigate}>
                                 <h3 className="mb-1 text-base font-semibold text-dark duration-200 group-hover:text-primary text-black dark:group-hover:text-primary">
                                   Read Blog
                                 </h3>
@@ -231,29 +239,6 @@ const Navbar = () => {
                               </div>
                             </a>
                           </div>
-                        </div>
-
-                        <div className="rounded-b-xl bg-primary/5 px-8 py-[18px]">
-                          <a
-                            href="#"
-                            className="flex w-full items-center justify-center gap-2 text-base font-medium text-primary"
-                          >
-                            Learn More
-                            <span>
-                              <svg
-                                width="21"
-                                height="20"
-                                viewBox="0 0 21 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M18.5 9.5L12.0312 2.9375C11.75 2.65625 11.3125 2.65625 11.0312 2.9375C10.75 3.21875 10.75 3.65625 11.0312 3.9375L16.2812 9.28125H3C2.625 9.28125 2.3125 9.59375 2.3125 9.96875C2.3125 10.3438 2.625 10.6875 3 10.6875H16.3437L11.0312 16.0938C10.75 16.375 10.75 16.8125 11.0312 17.0938C11.1562 17.2188 11.3437 17.2812 11.5312 17.2812C11.7187 17.2812 11.9062 17.2188 12.0312 17.0625L18.5 10.5C18.7812 10.2187 18.7812 9.78125 18.5 9.5Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </span>
-                          </a>
                         </div>
                       </div>
                     </li>
