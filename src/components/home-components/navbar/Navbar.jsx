@@ -14,12 +14,12 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="bg-black">
+      <div className="bg-gradient-to-t from-slate-50 to-sky-800">
         <div className="container mx-auto">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="w-60 max-w-full px-4">
               <Link href="/" className="block w-full py-5">
-                <h2 className="text-2xl font-bold text-white">Blog-Post</h2>
+                <h2 className="text-2xl font-bold text-white">UI Shots</h2>
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
